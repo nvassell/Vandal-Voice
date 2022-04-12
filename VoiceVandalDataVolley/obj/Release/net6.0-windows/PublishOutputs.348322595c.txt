@@ -1,0 +1,7 @@
+C:\Users\natev\Desktop\VandalVoice\VoiceVandalDataVolley.exe
+C:\Users\natev\Desktop\VandalVoice\VoiceVandalDataVolley.dll
+C:\Users\natev\Desktop\VandalVoice\VoiceVandalDataVolley.deps.json
+C:\Users\natev\Desktop\VandalVoice\VoiceVandalDataVolley.runtimeconfig.json
+C:\Users\natev\Desktop\VandalVoice\VoiceVandalDataVolley.pdb
+C:\Users\natev\Desktop\VandalVoice\System.Speech.dll
+C:\Users\natev\Desktop\VandalVoice\runtimes\win\lib\net6.0\System.Speech.dll

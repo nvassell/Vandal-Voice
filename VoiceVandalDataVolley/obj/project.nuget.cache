@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Mu8xlDTwsCmD2eHlX5lw4/rsNNr2V+FbK01Rw/37xP9GPwGmbnYqVMleHgsAizmAoHgGVDujnB5IivAwiyBOrw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\natev\\source\\repos\\VoiceVandalDataVolley\\VoiceVandalDataVolley\\VoiceVandalDataVolley.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\natev\\.nuget\\packages\\system.speech\\6.0.0\\system.speech.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
