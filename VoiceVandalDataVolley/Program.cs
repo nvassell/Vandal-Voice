@@ -37,8 +37,14 @@ var blockRating = new string[]
     "kill", "error"
 };
 
-var theButton = "banana-grams";
-StringBuilder sb = new StringBuilder();
+var consoleCommands = new string[]
+{
+    "restart", "undo", "done"
+};
+
+var codes = new List<string>();
+var sb = new StringBuilder();
+var codeSb = new StringBuilder();
 
 LoadSpeechRecognition();
 
@@ -177,13 +183,15 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             // Player Actions
             case "serve":
                 sb.Append("S ");
+                AddCode();
                 break;
             case "serve-ace":
                 sb.Append("S# ");
+                AddCode();
                 break;
             case "serve-error":
                 sb.Append("S=");
-                GetCodeString();
+                AddCode();
                 break;
             case "receive":
                 sb.Append("R");
@@ -201,34 +209,39 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             // Pass Ratings
             case "three-pass":
                 sb.Append("# ");
+                AddCode();
                 break;
             case "two-pass":
                 sb.Append("+ ");
+                AddCode();
                 break;
             case "one-pass":
                 sb.Append("- ");
+                AddCode();
                 break;
 
             // Error rating
             case "error":
                 sb.Append("= ");
-                GetCodeString();
-                sb.Clear();
+                AddCode();
                 break;
 
             // attack rating
             case "kill":
                 sb.Append("# ");
-                GetCodeString();
+                AddCode();
                 break;
             case "ace":
                 sb.Append("# ");
+                AddCode();
                 break;
             case "continue":
                 sb.Append("+ ");
+                AddCode();
                 break;
             case "blocked":
                 sb.Append("/ ");
+                AddCode();
                 break;
 
             // attack calls
@@ -291,10 +304,42 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 sb.Append("Y");
                 break;
 
-            case "banana-grams":
-                sb.Clear();
+            case "done":
+                // Has to copy something
+                if(codes.Count > 0)
+                {
+                    GetCodeString();
+                    sb.Clear();
+                    codes.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Nothing to copy...");
+                }
+                break;
+
+            case "restart":
+                codes.Clear();
                 Console.WriteLine("Starting coding over...");
                 break;
+
+            case "undo":
+                // nothing to undo
+                if (codes.Count == 0)
+                {
+                    Console.WriteLine("Nothing to undo...");
+                }
+                else
+                {
+                    Console.WriteLine("Removing newest command...");
+                    codes.RemoveAt(codes.Count - 1);
+                    foreach (var code in codes)
+                    {
+                        Console.WriteLine(code.ToString());
+                    }
+                }
+                break;
+
 
             default:
                 break;
@@ -307,19 +352,37 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
 
 void GetCodeString()
 {
-    Thread thread = new Thread(() => Clipboard.SetText(sb.ToString()));
+    foreach(var code in codes)
+    {
+        codeSb.Append(code.ToString());
+    }
+    Thread thread = new Thread(() => Clipboard.SetText(codeSb.ToString()));
+    
     thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
     thread.Start();
     thread.Join();
-    Console.WriteLine(sb.ToString());
+    //Console.WriteLine(codeSb.ToString());
     Console.WriteLine("Code(s) copied to clipboard...");
+    codeSb.Clear();
+}
+
+void AddCode()
+{
+    codes.Add(sb.ToString());
+    foreach (var code in codes)
+    {
+        Console.Write(code.ToString());
+    }
     sb.Clear();
 }
 
 Choices GetPlayLibrary()
 {
     Choices options = new Choices();
-    options.Add(theButton);
+    foreach (var command in consoleCommands)
+    {
+        options.Add(command);
+    }
     foreach (var number in playerNumbers)
     {
         foreach(var play in plays)
