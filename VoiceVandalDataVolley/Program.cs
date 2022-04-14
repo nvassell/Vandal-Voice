@@ -2,17 +2,48 @@
 using System.Text;
 
 SpeechRecognitionEngine recognizer;
-var playerNumbers = new string[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five" };
-var plays = new string[] { "serve", "pass", "attack", "block", "set" };
-var hittingCalls = new string[] { "fifty-one", "fifty-two", "super", "fourty-two", "two-two", "thirty-one", "two-one", "tye", "wave", "jett", "thirty-two", "A-two", "red", "pink", "pipe", "b", "c", "dump", "over-pass" };
-var passRating = new string[] { "three-pass", "two-pass", "one-pass", "error" };
-var hittingRating = new string[] { "continue", "error", "kill", "blocked" };
+var playerNumbers = new string[] 
+{ 
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 
+    "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", 
+    "nineteen", "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", 
+    "twenty-five", "twenty-six", "twenty-seven", "twenty-eight",
+};
+
+var plays = new string[] 
+{ 
+    "serve", "pass", "attack", "block", "set",
+};
+
+var hittingOptions = new string[]
+{
+    "fifty-one", "fifty-two", "super", "fourty-two", "two-two", "thirty-one", "two-one", 
+    "tye", "wave", "jett", "thirty-two", "A-two", "red", "pink", "pipe", "b", "c", "dump", 
+    "over-pass",
+};
+
+var passRating = new string[] 
+{
+    "three-pass", "two-pass", "one-pass", "error",
+};
+
+var hittingRating = new string[] 
+{
+    "continue", "error", "kill", "blocked",
+};
+
+var blockRating = new string[]
+{
+    "kill", "error"
+};
+
 var theButton = "banana-grams";
 StringBuilder sb = new StringBuilder();
 
 LoadSpeechRecognition();
 
 Console.WriteLine("Listening...");
+
 while (true)
 {
     Console.ReadLine();
@@ -131,6 +162,15 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 sb.Append("24");
                 break;
             case "twenty-five":
+                sb.Append("25");
+                break;
+            case "twenty-six":
+                sb.Append("26");
+                break;
+            case "twenty-seven":
+                sb.Append("27");
+                break;
+            case "twenty-eight":
                 sb.Append("28");
                 break;
 
@@ -155,8 +195,7 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 sb.Append("E");
                 break;
             case "block":
-                sb.Append("B#");
-                GetCodeString();
+                sb.Append("B");
                 break;
 
             // Pass Ratings
@@ -308,7 +347,7 @@ Choices GetPlayLibrary()
             }
             if (play == "attack")
             {
-                foreach (var hittingCall in hittingCalls)
+                foreach (var hittingCall in hittingOptions)
                 {
                     foreach(var rating in hittingRating)
                     {
@@ -319,8 +358,11 @@ Choices GetPlayLibrary()
             }
             if (play == "block")
             {
-                options.Add($"number {number} block");
-                options.Add($"opponent number {number} block");
+                foreach(var rating in blockRating)
+                {
+                    options.Add($"number {number} block {rating}");
+                    options.Add($"opponent number {number} block {rating}");
+                }
             }
             if (play == "set")
             {

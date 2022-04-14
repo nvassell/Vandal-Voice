@@ -1,0 +1,7 @@
+C:\Users\natev\source\builds\VoiceVandalDataVolley.exe
+C:\Users\natev\source\builds\VoiceVandalDataVolley.dll
+C:\Users\natev\source\builds\VoiceVandalDataVolley.deps.json
+C:\Users\natev\source\builds\VoiceVandalDataVolley.runtimeconfig.json
+C:\Users\natev\source\builds\VoiceVandalDataVolley.pdb
+C:\Users\natev\source\builds\System.Speech.dll
+C:\Users\natev\source\builds\runtimes\win\lib\net6.0\System.Speech.dll

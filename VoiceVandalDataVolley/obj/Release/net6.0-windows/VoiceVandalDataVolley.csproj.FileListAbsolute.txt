@@ -16,3 +16,7 @@ C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\obj\Rele
 C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\obj\Release\net6.0-windows\VoiceVandalDataVolley.pdb
 C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\obj\Release\net6.0-windows\VoiceVandalDataVolley.genruntimeconfig.cache
 C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\obj\Release\net6.0-windows\ref\VoiceVandalDataVolley.dll
+C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\bin\Release\net6.0-windows\VoiceVandalDataVolley.dll.manifest
+C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\bin\Release\net6.0-windows\VoiceVandalDataVolley.application
+C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\obj\Release\net6.0-windows\VoiceVandalDataVolley.dll.manifest
+C:\Users\natev\source\repos\VoiceVandalDataVolley\VoiceVandalDataVolley\obj\Release\net6.0-windows\VoiceVandalDataVolley.application
