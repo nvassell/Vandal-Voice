@@ -1,32 +1,32 @@
-#Vandal Voice - Quick Start Guide
+# Vandal Voice - Quick Start Guide
 A Data Volley voice programming application.
 
-##Usage
-###Service
+## Usage
+### Service
 * "opponent number" || "number"  +  [playerNumber]  +  "serve" || "serve-error" || "serve-ace"
-###Pass
+### Pass
 * "opponent number" || "number"  +  [playerNumber]  +  "receive" + [passRating]
-###Set (only account errors)
+### Set (only account errors)
 * "opponent number" || "number"  +  [playerNumber]  +  "set-error"
-###Attack
+### Attack
 * "opponent number" || "number"  +  [playerNumber]  +  "attack" + [hittingCall] + [attackRating]
-###Block
+### Block
 * "opponent number" || "number"  +  [playerNumber]  +  "block" + [blockRating]
 
 
-####[playerNumber]
+#### [playerNumber]
 	1-29
 
-####[passRating]
+#### [passRating]
 	"three-pass", "two-pass", "one-pass", "error"
 
-####[hittingCall]
+#### [hittingCall]
 	"fifty-one", "fifty-two", "super", "fourty-two", "two-two", "thirty-one", "two-one", 
     "tye", "wave", "jett", "thirty-two", "A-two", "red", "pink", "pipe", "b", "c", "dump", 
     "over-pass"
 
-####[attackRating]
+#### [attackRating]
 	"continue", "error", "kill", "blocked"
 
-####[blockRating]
+#### [blockRating]
 	"kill", "error"
