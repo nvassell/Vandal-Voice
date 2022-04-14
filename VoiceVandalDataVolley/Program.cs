@@ -39,7 +39,7 @@ var blockRating = new string[]
 
 var consoleCommands = new string[]
 {
-    "restart", "undo", "done"
+    "reset", "undo", "done"
 };
 
 var codes = new List<string>();
@@ -318,7 +318,7 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 }
                 break;
 
-            case "restart":
+            case "reset":
                 codes.Clear();
                 Console.WriteLine("Starting coding over...");
                 break;

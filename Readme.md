@@ -3,15 +3,15 @@ A Data Volley voice programming application.
 
 ## Usage
 ### Service
-* "opponent number" || "number"  +  [playerNumber]  +  "serve" || "serve-error" || "serve-ace"
+	"opponent number" || "number"  +  [playerNumber]  +  "serve" || "serve-error" || "serve-ace"
 ### Pass
-* "opponent number" || "number"  +  [playerNumber]  +  "receive" + [passRating]
+	"opponent number" || "number"  +  [playerNumber]  +  "receive" + [passRating]
 ### Set (only account errors)
-* "opponent number" || "number"  +  [playerNumber]  +  "set-error"
+	"opponent number" || "number"  +  [playerNumber]  +  "set-error"
 ### Attack
-* "opponent number" || "number"  +  [playerNumber]  +  "attack" + [hittingCall] + [attackRating]
+	"opponent number" || "number"  +  [playerNumber]  +  "attack" + [hittingCall] + [attackRating]
 ### Block
-* "opponent number" || "number"  +  [playerNumber]  +  "block" + [blockRating]
+	"opponent number" || "number"  +  [playerNumber]  +  "block" + [blockRating]
 
 
 #### [playerNumber]
@@ -30,3 +30,11 @@ A Data Volley voice programming application.
 
 #### [blockRating]
 	"kill", "error"
+
+### Other Commands
+#### "Done
+	Copies codes to clipboard and empties string for next play.
+#### "Undo"
+	Undoes previous play.
+#### "Reset"
+	Clears all plays
