@@ -44,7 +44,6 @@ var consoleCommands = new string[]
 
 var codes = new List<string>();
 var sb = new StringBuilder();
-var codeSb = new StringBuilder();
 
 LoadSpeechRecognition();
 
@@ -183,15 +182,15 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             // Player Actions
             case "serve":
                 sb.Append("S ");
-                AddCode();
+                PrintCodeString();
                 break;
             case "serve-ace":
                 sb.Append("S# ");
-                AddCode();
+                PrintCodeString();
                 break;
             case "serve-error":
                 sb.Append("S=");
-                AddCode();
+                PrintCodeString();
                 break;
             case "receive":
                 sb.Append("R");
@@ -209,39 +208,39 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             // Pass Ratings
             case "three-pass":
                 sb.Append("# ");
-                AddCode();
+                PrintCodeString();
                 break;
             case "two-pass":
-                sb.Append("+ ");
-                AddCode();
+                sb.Append("{+} ");
+                PrintCodeString();
                 break;
             case "one-pass":
                 sb.Append("- ");
-                AddCode();
+                PrintCodeString();
                 break;
 
             // Error rating
             case "error":
                 sb.Append("= ");
-                AddCode();
+                PrintCodeString();
                 break;
 
             // attack rating
             case "kill":
                 sb.Append("# ");
-                AddCode();
+                PrintCodeString();
                 break;
             case "ace":
                 sb.Append("# ");
-                AddCode();
+                PrintCodeString();
                 break;
             case "continue":
-                sb.Append("+ ");
-                AddCode();
+                sb.Append("{+} ");
+                PrintCodeString();
                 break;
             case "blocked":
                 sb.Append("/ ");
-                AddCode();
+                PrintCodeString();
                 break;
 
             // attack calls
@@ -308,19 +307,18 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 // Has to copy something
                 if(codes.Count > 0)
                 {
-                    GetCodeString();
                     sb.Clear();
                     codes.Clear();
+                    Console.WriteLine("Ready for next play...");
                 }
                 else
                 {
-                    Console.WriteLine("Nothing to copy...");
+                    Console.WriteLine("Listening...");
                 }
                 break;
 
             case "reset":
-                codes.Clear();
-                Console.WriteLine("Starting coding over...");
+                RestartCodeString();
                 break;
 
             case "undo":
@@ -332,11 +330,8 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 else
                 {
                     Console.WriteLine("Removing newest command...");
+                    UndoCodeString();
                     codes.RemoveAt(codes.Count - 1);
-                    foreach (var code in codes)
-                    {
-                        Console.WriteLine(code.ToString());
-                    }
                 }
                 break;
 
@@ -346,33 +341,33 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
 
         }
     }
-    Console.WriteLine(sb.ToString());
-
 }
 
-void GetCodeString()
+void UndoCodeString()
+{
+    foreach(var character in codes.Last())
+    {
+        SendKeys.SendWait("{BACKSPACE}");
+    }
+}
+
+void RestartCodeString()
 {
     foreach(var code in codes)
     {
-        codeSb.Append(code.ToString());
+        foreach(var character in code)
+        {
+            SendKeys.SendWait("{BACKSPACE}");
+        }
     }
-    Thread thread = new Thread(() => Clipboard.SetText(codeSb.ToString()));
-    
-    thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
-    thread.Start();
-    thread.Join();
-    //Console.WriteLine(codeSb.ToString());
-    Console.WriteLine("Code(s) copied to clipboard...");
-    codeSb.Clear();
+    codes.Clear();
+    Console.WriteLine("Starting coding over...");
 }
 
-void AddCode()
+void PrintCodeString()
 {
     codes.Add(sb.ToString());
-    foreach (var code in codes)
-    {
-        Console.Write(code.ToString());
-    }
+    SendKeys.SendWait(codes.Last());
     sb.Clear();
 }
 
