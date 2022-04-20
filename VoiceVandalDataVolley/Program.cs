@@ -2,60 +2,59 @@
 using System.Text;
 
 SpeechRecognitionEngine recognizer;
-var playerNumbers = new string[] 
-{ 
-    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 
-    "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", 
-    "nineteen", "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", 
-    "twenty-five", "twenty-six", "twenty-seven", "twenty-eight",
+
+
+var codes = new List<string>();
+var sb = new StringBuilder();
+var numbers = new List<string>();
+
+var playerNumbers = new List<string>
+{
+    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+    "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+    "nineteen", "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
+    "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine", "thirty",
 };
 
-var plays = new string[] 
-{ 
+var plays = new List<string>
+{
     "serve", "pass", "attack", "block", "set",
 };
 
-var hittingOptions = new string[]
+var hittingOptions = new List<string>
 {
-    "fifty-one", "fifty-two", "super", "fourty-two", "two-two", "thirty-one", "two-one", 
-    "tye", "wave", "jett", "thirty-two", "A-two", "red", "pink", "pipe", "b", "c", "dump", 
-    "over-pass",
+    "fifty-one", "fifty-two", "super", "fourty-two", "two-two", "dump", "over-pass", "thirty-one", "eleven", "twenty-one", 
+    "tye", "wave", "jett", "thirty-two", "A-two", "red", "pink", "pipe", "b", "c",
 };
 
-var passRating = new string[] 
+var passRating = new List<string>
 {
-    "three-pass", "two-pass", "one-pass", "error",
+    "A-pass", "B-pass", "C-pass", "error",
 };
 
-var hittingRating = new string[] 
+var hittingRating = new List<string>
 {
     "continue", "error", "kill", "blocked",
 };
 
-var blockRating = new string[]
+var blockRating = new List<string>
 {
     "kill", "error"
 };
 
-var consoleCommands = new string[]
+var consoleCommands = new List<string>
 {
     "reset", "undo", "done"
 };
 
-var codes = new List<string>();
-var sb = new StringBuilder();
 
 LoadSpeechRecognition();
-
 Console.WriteLine("Listening...");
 
 while (true)
 {
     Console.ReadLine();
 }
-
-
-
 
 void LoadSpeechRecognition()
 {
@@ -68,7 +67,7 @@ void LoadSpeechRecognition()
 
 
     // Add a handler for the speech recognize event.
-    recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(SpeechRecognized);
+    recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(SpeechRecognized!);
 
     //  Configure input to the speech recognizer.
     recognizer.SetInputToDefaultAudioDevice();
@@ -124,9 +123,6 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             case "ten":
                 sb.Append("10");
                 break;
-            case "eleven":
-                sb.Append("11");
-                break;
             case "twelve":
                 sb.Append("12");
                 break;
@@ -154,12 +150,6 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             case "twenty":
                 sb.Append("20");
                 break;
-            case "twenty-one":
-                sb.Append("21");
-                break;
-            case "twenty-two":
-                sb.Append("22");
-                break;
             case "twenty-three":
                 sb.Append("23");
                 break;
@@ -178,6 +168,12 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             case "twenty-eight":
                 sb.Append("28");
                 break;
+            case "twenty-nine":
+                sb.Append("29");
+                break;
+            case "thirty":
+                sb.Append("30");
+                break;
 
             // Player Actions
             case "serve":
@@ -189,7 +185,7 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 PrintCodeString();
                 break;
             case "serve-error":
-                sb.Append("S=");
+                sb.Append("S= ");
                 PrintCodeString();
                 break;
             case "receive":
@@ -206,15 +202,15 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 break;
 
             // Pass Ratings
-            case "three-pass":
+            case "A-pass":
                 sb.Append("# ");
                 PrintCodeString();
                 break;
-            case "two-pass":
+            case "B-pass":
                 sb.Append("{+} ");
                 PrintCodeString();
                 break;
-            case "one-pass":
+            case "C-pass":
                 sb.Append("- ");
                 PrintCodeString();
                 break;
@@ -242,8 +238,37 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 sb.Append("/ ");
                 PrintCodeString();
                 break;
-
-            // attack calls
+            /// OverLaps :(
+            case "eleven":
+                if (sb.ToString().EndsWith("P"))
+                {
+                    sb.Append("S");
+                }
+                else
+                {
+                    sb.Append("11");
+                }
+                break;
+            case "twenty-one":
+                if (sb.ToString().EndsWith("P"))
+                {
+                    sb.Append("D");
+                }
+                else
+                {
+                    sb.Append("21");
+                }
+                break;
+            case "twenty-two":
+                if (sb.ToString().EndsWith("P"))
+                {
+                    sb.Append("T");
+                }
+                else
+                {
+                    sb.Append("22");
+                }
+                break;
             case "fifty-one":
                 sb.Append("Q");
                 break;
@@ -255,18 +280,12 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 break;
             case "fourty-two":
                 sb.Append("R");
-                break;
-            case "two-two":
-                sb.Append("T");
-                break;
+                break;  
             case "thirty-one":
                 sb.Append("A");
                 break;
             case "thirty-two":
                 sb.Append("Z");
-                break;
-            case "two-one":
-                sb.Append("D");
                 break;
             case "tye":
                 sb.Append("F");
@@ -298,7 +317,6 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
             case "over-pass":
                 sb.Append("O");
                 break;
-
             case "dump":
                 sb.Append("Y");
                 break;
