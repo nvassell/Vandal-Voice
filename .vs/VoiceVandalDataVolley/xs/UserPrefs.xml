@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{797AAF35-A9FC-41A5-BA71-167107E1053C}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="VoiceVandalDataVolley/Program.cs">
+    <Files>
+      <File FileName="VoiceVandalDataVolley/Program.cs" Line="56" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="VoiceVandalDataVolley" expanded="True">
+            <Node name="VoiceVandalDataVolley" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.VoiceVandalDataVolley PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

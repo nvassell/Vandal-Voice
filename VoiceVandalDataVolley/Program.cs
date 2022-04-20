@@ -85,7 +85,7 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             // Player Identifiers
             case "opponent":
-                sb.Append("a");
+                sb.Append(";");
                 break;
             case "number":
                 break;
@@ -177,28 +177,28 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
 
             // Player Actions
             case "serve":
-                sb.Append("S ");
+                sb.Append("s.");
                 PrintCodeString();
                 break;
             case "serve-ace":
-                sb.Append("S# ");
+                sb.Append("s# ");
                 PrintCodeString();
                 break;
             case "serve-error":
-                sb.Append("S= ");
+                sb.Append("s= ");
                 PrintCodeString();
                 break;
             case "receive":
-                sb.Append("R");
+                sb.Append("r");
                 break;
             case "attack":
-                sb.Append("P");
+                sb.Append("p");
                 break;
             case "set":
-                sb.Append("E");
+                sb.Append("e");
                 break;
             case "block":
-                sb.Append("B");
+                sb.Append("b");
                 break;
 
             // Pass Ratings
@@ -240,9 +240,9 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 break;
             /// OverLaps :(
             case "eleven":
-                if (sb.ToString().EndsWith("P"))
+                if (sb.ToString().EndsWith("p"))
                 {
-                    sb.Append("S");
+                    sb.Append("s");
                 }
                 else
                 {
@@ -250,9 +250,9 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 }
                 break;
             case "twenty-one":
-                if (sb.ToString().EndsWith("P"))
+                if (sb.ToString().EndsWith("p"))
                 {
-                    sb.Append("D");
+                    sb.Append("d");
                 }
                 else
                 {
@@ -260,9 +260,9 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 }
                 break;
             case "twenty-two":
-                if (sb.ToString().EndsWith("P"))
+                if (sb.ToString().EndsWith("p"))
                 {
-                    sb.Append("T");
+                    sb.Append("t");
                 }
                 else
                 {
@@ -270,55 +270,55 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 }
                 break;
             case "fifty-one":
-                sb.Append("Q");
+                sb.Append("q");
                 break;
             case "fifty-two":
-                sb.Append("W");
+                sb.Append("w");
                 break;
             case "super":
-                sb.Append("E");
+                sb.Append("e");
                 break;
             case "fourty-two":
-                sb.Append("R");
+                sb.Append("r");
                 break;  
             case "thirty-one":
-                sb.Append("A");
+                sb.Append("q");
                 break;
             case "thirty-two":
-                sb.Append("Z");
+                sb.Append("z");
                 break;
             case "tye":
-                sb.Append("F");
+                sb.Append("f");
                 break;
             case "wave":
-                sb.Append("G");
+                sb.Append("g");
                 break;
             case "jett":
-                sb.Append("H");
+                sb.Append("h");
                 break;
             case "A-2":
-                sb.Append("X");
+                sb.Append("x");
                 break;
             case "red":
-                sb.Append("C");
+                sb.Append("c");
                 break;
             case "pink":
-                sb.Append("V");
+                sb.Append("v");
                 break;
             case "pipe":
-                sb.Append("B");
+                sb.Append("b");
                 break;
             case "b":
-                sb.Append("N");
+                sb.Append("n");
                 break;
             case "c":
-                sb.Append("M");
+                sb.Append("m");
                 break;
             case "over-pass":
-                sb.Append("O");
+                sb.Append("o");
                 break;
             case "dump":
-                sb.Append("Y");
+                sb.Append("y");
                 break;
 
             case "done":
