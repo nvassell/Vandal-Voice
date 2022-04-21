@@ -30,6 +30,7 @@ var hittingOptions = new List<string>
 var passRating = new List<string>
 {
     "A-pass", "B-pass", "C-pass", "error",
+    "Perfect-pass", "Three-pass", "Two-pass", "One-pass",
 };
 
 var hittingRating = new List<string>
@@ -203,14 +204,18 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
 
             // Pass Ratings
             case "A-pass":
+            case "Perfect-pass":
+            case "Three-pass":
                 sb.Append("# ");
                 PrintCodeString();
                 break;
             case "B-pass":
+            case "Two-pass":
                 sb.Append("{+} ");
                 PrintCodeString();
                 break;
             case "C-pass":
+            case "One-pass":
                 sb.Append("- ");
                 PrintCodeString();
                 break;
@@ -321,6 +326,8 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                 sb.Append("y");
                 break;
 
+/* Need Better functionality for this, re-add later.
+
             case "done":
                 // Has to copy something
                 if(codes.Count > 0)
@@ -352,7 +359,7 @@ void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
                     codes.RemoveAt(codes.Count - 1);
                 }
                 break;
-
+*/
 
             default:
                 break;
